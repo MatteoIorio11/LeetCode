@@ -6,9 +6,10 @@ class Solution {
         if(n == 1){
             return 1;
         }
-        var phi1 = (1+Math.sqrt(5))/2;
-        var phi2 = (1-Math.sqrt(5))/2;
+        var sqrt = Math.sqrt(5);
+        var phi1 = (1+sqrt)/2;
+        var phi2 = (1-sqrt)/2;
         
-        return (int) ((Math.pow(phi1, n) - Math.pow(phi2, n))/Math.sqrt(5));
+        return (int) ((Math.pow(phi1, n) - Math.pow(phi2, n))/sqrt);
     }
 }
