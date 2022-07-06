@@ -13,12 +13,13 @@ class Solution {
                     l = mid+1;
                 }
             }else{ 
-                if(target > nums[mid] && target <= nums[u]){
-                    l = mid+1;
-                }else{
-                    u = mid-1;
+                if(nums[mid] < nums[u]){
+                    if(target > nums[mid] && target <= nums[u]){
+                        l = mid+1;
+                    }else{
+                        u = mid-1;
+                    }
                 }
-                
             }
         }
         if(nums[l] == target){return l;}
