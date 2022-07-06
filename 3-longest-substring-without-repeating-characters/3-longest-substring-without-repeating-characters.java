@@ -1,23 +1,30 @@
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        if(s.length() == 1){return 1;}
-        int max = 0;
-        var i = 0;
-        var j = 1;
-        var len = 0;
-        Map<String, Integer> map = new HashMap<>();
-        while(i < s.length() && j <= s.length()){
-            var sub = s.substring(i, j);
-            len = sub.length();
-                if(j < s.length() && !sub.contains(String.valueOf(s.charAt(j)))){
-                    j++;
-                }else{
-                    map.put(sub, len);
-                    max = Math.max(len, max);            
-                    i+=1; // len > 1 ? (len-1) : 1;
-                    j = i+1;
-                }
+
+public int lengthOfLongestSubstring(String s) {
+    
+    if(s.length() == 0)             //if string is empty then return 0
+        return 0;
+    
+    HashMap<Character,Integer> map = new HashMap<>();       //help to get the previous index of repeating character
+    
+    int maxCount = Integer.MIN_VALUE;                       //Store minimum value in it, can take zero also
+    int count=0;                                            //a counter to count the length 
+    
+    for(int i=0;i<s.length();i++)
+    {
+        if(map.containsKey(s.charAt(i))){                   //Map contains that char then store previous index of that repeating char in i by +1
+            count=1;                                        //count reinitialise to 1 and delete all the elements from map 
+            i=map.get(s.charAt(i))+1;                       //to find another longest substring
+            map.clear();               
         }
-        return Math.max(max, len);
+        else
+            count++;
+        
+        map.put(s.charAt(i),i);                             // add char in the map with its index value
+        maxCount=Math.max(count,maxCount);                  //store the longest substring length
     }
+    
+    return maxCount;
+    
+}
 }
