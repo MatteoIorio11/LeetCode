@@ -1,17 +1,18 @@
 import java.util.Arrays;
 class Solution {
     public int search(int[] nums, int target) {
-        var lowerB = 0;
-        var upperB = nums.length-1;
+        var l = 0;
+        var u = nums.length -1;
         var mid = 0;
-        while(upperB >=lowerB){
-            mid = lowerB+(upperB-lowerB)/2;
+        while(u >= l){
+            mid = l+(u-l)/2;
             if(nums[mid] == target){
                 return mid;
-            }else if(nums[mid] > target){
-                upperB = mid-1;
-            }else if(nums[mid] < target){
-                lowerB = mid+1;
+            }
+            if(nums[mid] > target){
+                u = mid-1;
+            }else{
+                l = mid+1;
             }
         }
         return -1;
