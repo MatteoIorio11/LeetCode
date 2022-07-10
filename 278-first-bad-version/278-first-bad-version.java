@@ -3,22 +3,19 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
-        var lowerB = 1;
-        var upperB = n;
-        var mid = lowerB + (upperB-lowerB)/2;
-        var val = mid;
-        if(n == 1 && isBadVersion(1)){
-            return 1;
-        }
-        while(upperB >= lowerB){
+        var l = 0;
+        var u = n;
+        var mid = 0;
+        var first = 0;
+        while(u >= l){
+            mid = l+(u-l)/2;
             if(isBadVersion(mid)){
-                upperB = mid-1;
-                val = mid;
+                first = mid;
+                u = mid-1;
             }else{
-                lowerB = mid+1;
+                l = mid+1;
             }
-            mid = lowerB + (upperB-lowerB)/2;
         }
-        return val;
+        return first;
     }
 }
