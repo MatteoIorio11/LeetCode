@@ -1,16 +1,32 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-        int[] res = new int[nums.length];
-        for(int i = 0; i < nums.length; i++){
-            if(i + k < nums.length){
-                res[i+k] = nums[i]; 
-            }else{
-                var index = (i+k)%nums.length;
-                res[index] = nums[i];
-            }
+        k = k%nums.length;
+        var l = 0;
+        var r = nums.length-1;
+        while(l < r){
+            var tmp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = tmp;
+            l++;
+            r--;
         }
-        for(int i = 0; i < nums.length; i++){
-            nums[i] = res[i];
+        l = 0;
+        r = k-1;
+        while(l < r){
+            var tmp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = tmp;
+            l++;
+            r--;
+        }
+        l = k;
+        r = nums.length-1;
+        while(l < r){
+            var tmp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = tmp;
+            l++;
+            r--;
         }
     }
 }
