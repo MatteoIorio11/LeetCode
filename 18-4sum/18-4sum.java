@@ -13,7 +13,6 @@ class Solution {
                         var l = j+1;
                         var r = nums.length-1;
                         while(l < nums.length &&  r > 0 && l < r){
-                            //System.out.println(" i : " + i + " j : " + j + " l : " + l + " r : " + r);
                             long sum = (long)nums[i]+ (long)nums[j]+ (long)nums[l]+ (long)nums[r];
                             if(sum == target){
                                 list.add(List.of(nums[i], nums[j], nums[l], nums[r]));
