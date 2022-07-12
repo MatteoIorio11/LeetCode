@@ -3,24 +3,22 @@ class Solution {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         
-        var l = 0;
-        var r = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> out = new LinkedList<>();//int[nums1.length > nums2.length ? nums2.length : nums1.length];
-        for(int i = 0; i < nums1.length ; i++){
-            map.merge(nums1[i], 1, (x,y) -> x+y);
-        }
-        for(int i = 0; i < nums2.length; i++){
-            if(map.containsKey(nums2[i])){
-                out.add(nums2[i]);
-                map.merge(nums2[i], 1, (x, y) -> x-y);
-                if(map.get(nums2[i]) == 0){map.remove(nums2[i]);}
+        var l1 = 0;
+        var l2 = 0;
+        List<Integer> list = new LinkedList<>();
+        while(l1 < nums1.length && l2 < nums2.length){
+            if(nums1[l1] < nums2[l2]){
+                l1++;
+            }else if(nums1[l1] > nums2[l2]){
+                l2++;
+            }else{
+                list.add(nums1[l1]);
+                l1++;
+                l2++;
             }
         }
-        int[] arr = new int[out.size()];
-        for(int i = 0; i < out.size(); i++){
-            arr[i] = out.get(i);
-        }
+        int[] arr = new int[list.size()];
+        for(int i = 0; i < list.size(); i++){arr[i] = list.get(i);}
         return arr;
     }
     
