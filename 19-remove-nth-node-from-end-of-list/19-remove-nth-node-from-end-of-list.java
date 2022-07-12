@@ -11,17 +11,31 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         
-        List<ListNode> list = new LinkedList<>();
+        //List<ListNode> list = new LinkedList<>();
         var copy = head;
+        var size = 0;
         while(copy != null){
-            list.add(copy);
+            size++;
             copy = copy.next;
         }
-        ListNode newList = null;
-        list.remove(list.size()-n);
-        for(int i = list.size()-1; i >= 0 ; i--){
-            newList = new ListNode(list.get(i).val, newList);
+        copy = head;
+        var pos = size-n;
+        if(pos == 0){
+            head = head.next;
+            return head;
         }
-        return newList;
+        if(size == 1){
+            return null;
+        }
+        for(int i = 0; i <= pos; i++){
+            if(i == pos-1){
+                copy.next = copy.next.next;
+                break;
+            }else{
+                copy = copy.next;
+            }
+        }
+        copy = head;
+        return copy;
     }
 }
