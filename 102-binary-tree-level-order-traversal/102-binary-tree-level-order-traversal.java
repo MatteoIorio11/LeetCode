@@ -13,25 +13,31 @@
  *     }
  * }
  */
-import java.util.List;
-import java.util.LinkedList;
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> out = new LinkedList<>();
-        binarySearch(out, root, 0);
-        return out;
-    }
-    private void binarySearch(List<List<Integer>> list, TreeNode root,int height){
-        if(root == null){
-            return ;
-        }
-        
-        if(height >= list.size()){
+        List<List<Integer>> list = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int level = 0;
+        int nulls = 0;
+        while(queue.size() > 0){
+            int l = queue.size();
             list.add(new LinkedList<Integer>());
+            for(int i = 0; i < l; i++){
+                TreeNode node = queue.poll();
+                if(node != null){
+                    list.get(level).add(node.val);
+                    queue.add(node.left);
+                    queue.add(node.right);
+                }else{
+                    nulls++;
+                }
+            }
+            if(nulls == l){list.remove(level);}
+            level++;
+            nulls = 0;
         }
-        list.get(height).add(root.val);
-        height++;
-        binarySearch(list, root.left, height);
-        binarySearch(list, root.right, height);
+        return list;
     }
+
 }
