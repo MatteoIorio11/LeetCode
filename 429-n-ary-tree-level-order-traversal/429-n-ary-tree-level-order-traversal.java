@@ -25,12 +25,12 @@ class Solution {
         int nulls = 0;
         queue.add(root);
         while(queue.size() > 0){
-            list.add(new LinkedList<>());
+            List<Integer> elements = new LinkedList<>(); //list.add(new LinkedList<>());
             int len = queue.size();
             for(int i = 0; i < len; i++){
                 Node node = queue.poll();
                 if(node != null){
-                    list.get(level).add(node.val);
+                    elements.add(node.val);
                     for(Node child : node.children){
                         queue.add(child);
                     }
@@ -38,7 +38,7 @@ class Solution {
                     nulls++;
                 }
             }
-            if(nulls == len){list.remove(level);}
+            if(!elements.isEmpty()){list.add(elements);}
             level++;
             nulls = 0;
         }
