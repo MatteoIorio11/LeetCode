@@ -21,8 +21,6 @@ class Solution {
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> list = new LinkedList<>();
         Queue<Node> queue = new LinkedList<>();
-        int level = 0;
-        int nulls = 0;
         queue.add(root);
         while(queue.size() > 0){
             List<Integer> elements = new LinkedList<>(); //list.add(new LinkedList<>());
@@ -34,13 +32,9 @@ class Solution {
                     for(Node child : node.children){
                         queue.add(child);
                     }
-                }else{
-                    nulls++;
                 }
             }
             if(!elements.isEmpty()){list.add(elements);}
-            level++;
-            nulls = 0;
         }
         return list;
     }
