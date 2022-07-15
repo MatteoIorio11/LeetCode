@@ -3,11 +3,14 @@ class Solution:
         if(len(s) != len(t)):
             return False
         
-        sSorted = sorted(s)
-        tSorted = sorted(t)
+        sCount, tCount = [0]*26, [0]*26
         
-        for i in range(len(sSorted)):
-            if(sSorted[i] != tSorted[i]):
+        for i in range(len(s)):
+            sCount[ord(s[i])-ord('a')]+=1
+            tCount[ord(t[i])-ord('a')]+=1
+        
+        for i in range(len(sCount)):
+            if(sCount[i] != tCount[i]):
                 return False
         
         return True
