@@ -10,18 +10,17 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        List<Integer> out = new LinkedList<>();
+        PriorityQueue<Integer> out = new PriorityQueue<>((x,y) ->y.compareTo(x));
         for(var list : lists){
             while(list != null){
                 out.add(list.val);
                 list = list.next;
             }
         }
-        List<Integer> list = out.stream().sorted((x,y) -> x.compareTo(y)).toList();
-        System.out.println(list);
+        System.out.println(out);
         ListNode finalList = null;
-        for(int i = list.size() -1; i >= 0; i--){
-            finalList = new ListNode(list.get(i), finalList);
+        for(int i = out.size() -1; i >= 0; i--){
+            finalList = new ListNode(out.poll(), finalList);
         }
         return finalList;
     }
