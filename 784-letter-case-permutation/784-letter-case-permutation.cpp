@@ -1,33 +1,30 @@
 class Solution {
 public:
     
-    vector<string> vec;
-    
-    void backtrack(string s, string temp, int i, int n){
-        
-        if(i>=n){
-            vec.push_back(temp);
-            return;
-        }
-        if(s[i]>='a' && s[i]<='z'){
-            backtrack(s,temp+s[i],i+1,n);
-            backtrack(s,temp+(char)(s[i]-32),i+1,n);
-        } 
-        else if(s[i]>='A' && s[i]<='Z'){
-            backtrack(s,temp+s[i],i+1,n);
-            backtrack(s,temp+(char)(s[i]+32),i+1,n);
-        }
-        else backtrack(s,temp+s[i],i+1,n);
-        
+    vector<string> letterCasePermutation(string s) {
+        vector<string> ans;
+        int index = 0;
+        backtracking(s, index, ans);
+        return ans;
     }
     
-    vector<string> letterCasePermutation(string s) {
-        int n=s.size();
-        int index=0;
+    void backtracking(string s, int index, vector<string>& ans){
+        if(index == s.size()){
+            ans.push_back(s);
+            return;
+        }
         
-        backtrack(s,"",0,n);
-        
-        return vec;
-        
+        backtracking(s, index+1, ans);
+        if(isalpha(s[index])){
+            if(isupper(s[index])){
+                s[index] = tolower(s[index]);
+                backtracking(s, index+1, ans);
+                s[index] = toupper(s[index]);
+            }else{
+                s[index] = toupper(s[index]);
+                backtracking(s, index+1, ans);
+                s[index] = tolower(s[index]);
+            }
+        }
     }
 };
