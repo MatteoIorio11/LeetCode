@@ -14,7 +14,6 @@ public:
         if(head == NULL){
             return head;
         }
-        map<int,int> m;
         ListNode* l1 = head;
         ListNode* r1 = head->next;
         ListNode* a = new ListNode(-1);
