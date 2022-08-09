@@ -11,12 +11,10 @@
  */
 class BSTIterator {
 public:
-    TreeNode* tree = NULL;
     vector<int> values;
     int index = 0;
     BSTIterator(TreeNode* root) {
-        tree = root;
-        traverse(tree);
+        traverse(root);
     }
     
     int next() {
