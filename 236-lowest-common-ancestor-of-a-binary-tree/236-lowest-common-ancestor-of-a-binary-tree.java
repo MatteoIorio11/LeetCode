@@ -15,11 +15,11 @@ class Solution {
         }
         int left = this.search(curr.left, p, q) ? 1 : 0;
         int right = this.search(curr.right, p, q) ? 1 : 0;
-        int mid = (curr == p || curr == q) ? 1 : 0;
-        if(mid+left+right >= 2){
-            this.ans = curr;
+        int mid = (curr  == p || curr == q) ? 1 : 0;
+        if((left+right+mid) >=2){
+            ans = curr;
         }
-        return (mid+left+right > 0);
+        return (left+right+mid) > 0;
     }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         this.search(root, p, q);
