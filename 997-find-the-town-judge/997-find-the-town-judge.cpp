@@ -1,26 +1,15 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        if(trust.empty() && n == 1){
-            return 1;
-        }else if(trust.empty() && n > 1){
-            return -1;
+        vector<int> trusts(n+1,0);
+        vector<int> votes(n+1, 0);
+        for(int i = 0; i < trust.size(); i++){
+            trusts[trust[i][1]]++;
+            votes[trust[i][0]]++;
         }
-        map<int, int> mapTrust;
-        map<int, int> mapEle;
-        int rows = trust.size();
-        int cols = trust[0].size();
-        for(int i = 0; i < n; i++){
-            mapTrust[i] = 0;
-            mapEle[i] = 0;
-        }
-        for(int i = 0; i < rows; i++){
-            mapTrust[trust[i][1]] +=1;
-            mapEle[trust[i][0]] +=1;
-        }
-        for(auto it = mapTrust.begin(); it != mapTrust.end(); it++){
-            if(it->second == n-1 && mapEle[it->first] == 0){
-                return it->first;
+        for(int i = 1; i <= n; i++){
+            if(votes[i] == 0 and trusts[i] == n-1){
+                return i;
             }
         }
         return -1;
