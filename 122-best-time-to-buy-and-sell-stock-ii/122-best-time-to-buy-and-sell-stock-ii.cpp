@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int profit = 0, l = 0, r = 1, price = 0;
+        int profit = 0, l = 0, r = 1;
         while(r < prices.size()){
             if(prices[r] < prices[l]){
                 l = r;
