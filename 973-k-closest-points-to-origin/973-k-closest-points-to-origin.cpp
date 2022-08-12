@@ -6,7 +6,6 @@ public:
         double dist = 0;
         for(int i = 0; i < points.size(); i++){
             dist = sqrt(pow((0-points[i][0]),2) + pow((0-points[i][1]),2));
-            cout << dist << endl;
             q.push({dist, {points[i][0], points[i][1]}});
         }
         for(int i = 0; i < k; i++){
