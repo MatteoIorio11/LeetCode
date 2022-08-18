@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minSetSize(vector<int>& arr) {
-        priority_queue<pair<int,int>> q;
+        priority_queue<int> q;
         sort(arr.begin(), arr.end());
         int cont = 1, size = 0, numbs = 0;
         for(int i = 0; i < arr.size(); i++){
@@ -9,14 +9,14 @@ public:
                 i++;
                 cont++;
             }
-            q.push({cont, arr[i]});
+            q.push(cont);
             cont = 1;
         }
         while(!q.empty()){
             if(size >= arr.size()/2){
                 break;
             }else{
-                size+=q.top().first;
+                size+=q.top();
                 q.pop();
                 numbs++;
             }
