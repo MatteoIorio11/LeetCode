@@ -1,9 +1,12 @@
 class Solution {
 public:
+    int n, m;
     int numIslands(vector<vector<char>>& grid) {
         int islands = 0;
-        for(int i = 0; i < grid.size(); i++){
-            for(int j = 0; j < grid[0].size(); j++){
+        m = grid.size();
+        n  = grid[0].size();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
                 if(grid[i][j] == '1'){
                     dfs(grid, i, j);
                     islands++;
@@ -22,10 +25,10 @@ public:
             if(j >= 1){
                 dfs(g, i, j-1);
             }
-            if(i < g.size()-1){
+            if(i < m-1){
                 dfs(g, i+1, j);
             }
-            if(j < g[0].size()-1){
+            if(j < n-1){
                 dfs(g, i, j+1);
             }
         }
