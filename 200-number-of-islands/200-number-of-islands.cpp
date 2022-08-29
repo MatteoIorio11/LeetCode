@@ -16,14 +16,18 @@ public:
     void dfs(vector<vector<char>>& g, int i, int j){
         if(g[i][j] == '1'){
             g[i][j] = '0';
-            if(i+1 < g.size())
-                dfs(g, i+1, j);
-            if(j +1 < g[i].size())
-                dfs(g, i, j+1);
-            if(i>= 1)
+            if(i >= 1){
                 dfs(g, i-1, j);
-            if(j >= 1)
+            }
+            if(j >= 1){
                 dfs(g, i, j-1);
+            }
+            if(i < g.size()-1){
+                dfs(g, i+1, j);
+            }
+            if(j < g[0].size()-1){
+                dfs(g, i, j+1);
+            }
         }
     }
 };
