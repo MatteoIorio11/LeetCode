@@ -1,20 +1,12 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> map_s(m, vector<int>(n));
-        for(int i = m-1; i >= 0; i--){
-            for(int j = n-1; j >= 0; j--){
-                if(i == m-1){
-                    map_s[i][j] = 1;
-                }
-                else if(j == n-1){
-                    map_s[i][j] = 1;
-                }else{
-                    map_s[i][j] = map_s[i][j+1] + map_s[i+1][j];
-                }
-                
+        vector<vector<int>> matrix(m, vector<int>(n, 1));
+        for(int i = m-2; i >= 0; i--){
+            for(int j = n-2; j>= 0; j--){
+                matrix[i][j] = matrix[i+1][j] + matrix[i][j+1];
             }
         }
-        return map_s[0][0];
+        return matrix[0][0];
     }
 };
