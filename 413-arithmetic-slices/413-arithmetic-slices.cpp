@@ -5,7 +5,13 @@ public:
         int diff = 0;
         for(int i = 0; i < nums.size()-1; i++){
             diff = (nums[i+1] - nums[i]);
-            calcDiff(nums, i+2, diff);
+            for(int j = i+2; j < nums.size(); j++){
+                if(nums[j]-nums[j-1] == diff){
+                    counts++;
+                }else{
+                    break;
+                }
+            }
         }
         return counts;
     }
