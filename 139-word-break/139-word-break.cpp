@@ -1,7 +1,7 @@
 class Solution {
 public:
-    unordered_set<string> dict;
-    unordered_map<string, bool> map;
+    set<string> dict;
+    map<string, bool> map;
     
     bool wordBreak(string s, vector<string>& wordDict) {
 
