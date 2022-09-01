@@ -23,11 +23,9 @@ public:
         }
         if(node->val >= maxV){
             ans++;
-            foo(node->val, node->right);
-            foo(node->val, node->left);
-        }else{
-            foo(maxV, node->right);
-            foo(maxV, node->left);
+            maxV = node->val;
         }
+        foo(maxV, node->right);
+        foo(maxV, node->left);    
     }
 };
