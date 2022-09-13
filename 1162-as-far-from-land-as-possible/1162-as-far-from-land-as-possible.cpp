@@ -1,15 +1,12 @@
 class Solution {
 public:
-    int n = 0;
-    int x0 = 0, y0 = 0;
+
     int maxDistance(vector<vector<int>>& grid) {
-        int ans = -1, zeros = 0;
+        int n = grid.size(), ans = -1;
+        
         queue<pair<int,int>> q;
         vector<pair<int,int>> adj = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         set<pair<int,int>> visited;
-        
-        n = grid.size();
-        
         vector<vector<int>> dp(n, vector<int>(n, 0));
         
         for(int i = 0; i < n; i++){
@@ -40,7 +37,10 @@ public:
                     }else{
                         grid[x][y] = 1;
                         q.push({x,y});
-                        dp[x][y] = 1 + dp[p.first][p.second];
+                        /*
+                        dp[p.f][p.s] is the adj cell where we have the distance between that cell and the nearest land
+                        */
+                        dp[x][y] = 1 + dp[p.first][p.second]; //The current cell plus 1 
                         ans = max(dp[x][y], ans);
                     }
                 }
