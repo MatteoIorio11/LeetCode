@@ -39,8 +39,6 @@ public:
             }
             explore(r->left, m);
             explore(r->right, m);
-        }else{
-            return;
         }
     }
 };
