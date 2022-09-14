@@ -26,8 +26,8 @@ public:
             m[r->val]++;
             
             if(r->left == NULL and r->right == NULL){
-                int odd = 0, even = 0;
-                for(auto x : m){
+                int odd = 0;
+                for(int x : m){
                     if(x % 2 != 0){
                         odd++;
                     }
